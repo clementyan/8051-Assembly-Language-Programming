@@ -18,39 +18,39 @@
 ;-----------------------------------------------------------------------------
 ;            MAIN PROGRAM
 ;-----------------------------------------------------------------------------
-	ORG 00H
-	MOV SP,#5FH
+	ORG	00H
+	MOV	SP,#5FH
 
-	CALL INITLCD
+	CALL	INITLCD
 
-	MOV R5,#3
-GLINT:  CALL CLRLCD;;;;;;;
-	MOV R7,#20
-	CALL DELAY50MS
-	MOV A,#1
-	MOV B,#0
-	CALL GOXY
-	MOV DPTR,#STR
-	CALL PRTstring
-	MOV R7,#20
-	CALL DELAY50MS
+	MOV	R5,#3
+GLINT:  CALL	CLRLCD;;;;;;;
+	MOV	R7,#20
+	CALL 	DELAY50MS
+	MOV 	A,#1
+	MOV 	B,#0
+	CALL 	GOXY
+	MOV 	DPTR,#STR
+	CALL 	PRTstring
+	MOV 	R7,#20
+	CALL 	DELAY50MS
 
-	DJNZ R5,GLINT
+	DJNZ 	R5,GLINT
 
-	MOV R4,#16
-	MOV B,#15
-CLRRR:  MOV A,#1
-	CALL GOXY
-	MOV A,#20H
-	CALL WRDR
-	MOV R7,#20
-	CALL DELAY50MS
-	DEC B
-	DJNZ R4,CLRRR
+	MOV 	R4,#16
+	MOV 	B,#15
+CLRRR:  MOV 	A,#1
+	CALL 	GOXY
+	MOV 	A,#20H
+	CALL 	WRDR
+	MOV 	R7,#20
+	CALL 	DELAY50MS
+	DEC 	B
+	DJNZ 	R4,CLRRR
 
-	JMP $
+	JMP 	$
 
-STR:	DB 'THIS IS 2ND LINE','$'
+STR:	DB 	'THIS IS 2ND LINE','$'
 ;-----------------------------------------------------------------------------
 ;           GO X LINE, Y CHAR
 ;-----------------------------------------------------------------------------
@@ -97,7 +97,7 @@ DELAY50ms:
 DLOOP1:         MOV     TH0,#HIGH(65536-50000)
                 MOV     TL0,#LOW(65536-50000)
                 SETB    TR0
-                JNB     TF0,$
+		JNB	TF0,$
                 CLR     TR0
                 CLR     TF0
                 DJNZ    R7,DLOOP1
